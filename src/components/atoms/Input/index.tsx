@@ -1,19 +1,23 @@
-import React from 'react'
-import theme from '../../../styles/theme'
+import React, { FC } from 'react';
+import theme from '../../../styles/theme';
 
-import { TextInput, StyleSheet, Platform } from 'react-native'
+import { TextInput, TextInputProps, StyleSheet, Platform } from 'react-native';
 
-const Input = ({ placeholder, value, onChange }) => {
+interface InputProps extends TextInputProps {
+  label?: string;
+}
+
+const Input: FC<InputProps> = ({ placeholder, value, ...props }) => {
   return (
     <TextInput
       style={styles.input}
       placeholder={placeholder}
       placeholderTextColor={theme.colors.grey900}
       value={value}
-      onChangeText={onChange}
+      {...props}
     />
   );
-}
+};
 
 const styles = StyleSheet.create({
   input: {
@@ -23,6 +27,6 @@ const styles = StyleSheet.create({
     height: 48,
     borderRadius: 8
   }
-})
+});
 
 export default Input;

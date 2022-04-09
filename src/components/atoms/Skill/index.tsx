@@ -1,17 +1,20 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import theme from '../../../styles/theme';
 
-const Skill = ({ name, level }) => {
+interface SkillProps {
+  name: string;
+  level?: number;
+}
+
+const Skill: FC<SkillProps> = ({ name }) => {
   return (
     <View style={styles.skillBox}>
       <View style={styles.skillLevel} />
-      <Text style={styles.skillText}>
-        {name}
-      </Text>
+      <Text style={styles.skillText}>{name}</Text>
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   skillBox: {
@@ -28,12 +31,12 @@ const styles = StyleSheet.create({
     height: 8,
     backgroundColor: theme.colors.blue,
     marginHorizontal: 16,
-    borderRadius: 4,
+    borderRadius: 4
   },
   skillText: {
     color: theme.colors.white,
-    fontSize: 16,
+    fontSize: 16
   }
-})
+});
 
 export default Skill;

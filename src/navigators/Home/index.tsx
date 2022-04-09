@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Text, FlatList, StyleSheet } from 'react-native'
+import { Text, FlatList, StyleSheet } from 'react-native';
 import { Button, Input, ScreenBase, Skill } from '../../components';
 import theme from '../../styles/theme';
 
@@ -28,36 +28,36 @@ const Home = () => {
     {
       name: 'Apollo',
       level: 2
-    },
-  ])
-  const [formData, setFormData] = useState()
+    }
+  ]);
+  const [formData, setFormData] = useState<string>();
 
   const handleAddToSkill = () => {
-    const findMySkillExists = skills?.find(skill => skill.name === formData)
+    const findMySkillExists = skills?.find((skill) => skill.name === formData);
 
     if (formData && !findMySkillExists) {
-      setSkills(oldState => [...oldState, {
-        name: formData,
-        level: 5
-      }])
-      setFormData(null)
+      setSkills((oldState) => [
+        ...oldState,
+        {
+          name: formData,
+          level: 5
+        }
+      ]);
+      setFormData('');
     }
-  }
+  };
 
   return (
     <ScreenBase>
-      <Text style={{ ...styles.title, marginBottom: 24, }}>
+      <Text style={{ ...styles.title, marginBottom: 24 }}>
         Bem vindo, Fabio Silva
       </Text>
       <Input
         placeholder="Nova skill"
         value={formData}
-        onChange={setFormData}
+        onChangeText={setFormData}
       />
-      <Button
-        label="Cadastrar"
-        onPress={handleAddToSkill}
-      />
+      <Button label="Cadastrar" onPress={handleAddToSkill} />
       <Text style={{ ...styles.title, marginTop: 24, fontSize: 18 }}>
         Minhas Habilidades
       </Text>
@@ -67,12 +67,11 @@ const Home = () => {
       <FlatList
         data={skills}
         keyExtractor={(_, index) => `skill-item-${index}`}
-        renderItem={({ item }) => <Skill name={item.name} level={item.level} />
-        }
+        renderItem={({ item }) => <Skill name={item.name} level={item.level} />}
       />
     </ScreenBase>
   );
-}
+};
 
 const styles = StyleSheet.create({
   title: {
@@ -87,6 +86,6 @@ const styles = StyleSheet.create({
     marginTop: 4,
     marginBottom: 32
   }
-})
+});
 
 export default Home;
